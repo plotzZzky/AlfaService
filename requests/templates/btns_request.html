@@ -1,0 +1,14 @@
+    <div class="table-div-btns" id="btnsRequest">
+        <select id="SelectorStatus" class="select-btn" onchange="filterStatus()">
+            <option disabled selected value> Status </option>
+            <option value="0"> Todos </option>
+            <option value="1"> Concluido </option>
+            <option value="2"> Em aguardo </option>
+            <option value="3"> Em aberto</option>
+        </select>
+
+        <div class="div-find-item">
+            <input type="text" class="input-filter" placeholder="Buscar por titulo" oninput="filterCpf(this)">
+            <button class="clear-find-item" onclick="clearFilter()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>

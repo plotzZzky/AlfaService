@@ -1,0 +1,24 @@
+<div class="div-table">
+    <table>
+        <tr>
+            <th> Cpf </th>
+            <th> Nome </th>
+            <th> Sobrenome  </th>
+            <th> Cidade </th>
+            <th> Endereço </th>
+            <th> Telefone </th>
+            <th> Email </th>
+        </tr>
+        {% for item in customers %}
+            <tr>
+                <td style="cursor: pointer;" onclick="getEditCustomers({{ item.id }})"> {{ item.cpf }} </td>
+                <td> {{ item.name }} </td>
+                <td> {{ item.lastname }} </td>
+                <td> {{ item.city }} </td>
+                <td> {{ item.address }} </td>
+                <td> {{ item.telephone }} </td>
+                <td> {{ item.email }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

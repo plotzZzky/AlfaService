@@ -1,0 +1,24 @@
+<div class="div-table">
+    <table id="requestTable">
+        <tr>
+            <th> Titulo </th>
+            <th> Status </th>
+            <th> Pedido </th>
+            <th> Nome </th>
+            <th> Cidade </th>
+            <th> Endereço </th>
+            <th> Telefone </th>
+        </tr>
+        {% for item in requests %}
+            <tr>
+                <td style="cursor: pointer;" onclick="getEditRequests('{{ item.id }}')"> {{ item.title }} </td>
+                <td> {{ item.status }} </td>
+                <td> {{ item.order }} </td>
+                <td> {{ item.customer.name }} </td>
+                <td> {{ item.customer.city }} </td>
+                <td> {{ item.customer.address }} </td>
+                <td> {{ item.customer.telephone }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+    {% block title %} Entrar {% endblock %}
+
+    {% load static %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'login.css' %}">
+        <script type=text/javascript src="{% static 'js/login.js' %}"></script>
+    {% endblock %}
+
+    {% block page %}
+
+    <div class="div-login">
+
+        <div class="brand-login">
+            <a class="login-brand-title">@lfaService </a><br>
+            <a class="login-brand-subtitle"> A empresa numero 1 em internet e telefonia </a>
+
+        </div>
+
+        {% include "login_tab.html" %}
+
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+    {% block title %} Tabelas {% endblock %}
+
+    {% block page %}
+        <div class="app-bar">
+            <div class="app-inline-btns">
+                <div class="div-app-btns">
+                    <select  class="select-btn" id="selectTable" onchange="getTable()">
+                        <option disabled selected value> Selecionar </option>
+                        <option value="0"> Clientes </option>
+                        <option value="1"> Chamados </option>
+                    </select>
+                    <button class="app-btn" onclick="getCustomerForm()"> Novo cliente </button>
+                    <button class="app-btn" onclick="getRequestForm()"> Novo Chamado </button>
+                </div>
+                {% include "btns_request.html" %}
+                {% include "btns_customer.html" %}
+            </div>
+        </div>
+
+    <div id="divTable">
+
+    </div>
+
+    <div id="Edit">
+
+    </div>
+
+    {% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+    {% block title %} Sobre {% endblock %}
+
+    {% block page %}
+
+        <h2 class="title"> @lfaService</h2>
+
+        <h1 class="title"> Sobre:</h1>
+        <a> Este projeto simula app de uma empresa de internet permitindo cadastrar novos clientes e fazer chamados</a><br>
+        <a> Projeto feito com Django e PostgreSql </a>
+
+        <h2> Estrutura: </h2>
+        <a class="about-link" href="/users/login/"><h3>/users/login/ - Pagina de login  e Cadastro </h3></a>
+        <a class="about-link" href="/users/config/"><h3>/users/config/ - Pagina para editar a conta </h3></a>
+        <a class="about-link" href="/"><h3>/ - Pagina Inicial </h3></a>
+        <a class="about-link" href="/about/"><h3>/about/ - Pagina de login  e Cadastro </h3></a>
+        <h2> Importante: </h2>
+        <a class="about-link" href="/create_info/"><h3>create_info/ - Prenche as tabelas com alguma informções </h3></a>
+
+
+
+
+    {% endblock %}

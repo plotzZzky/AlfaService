@@ -1,0 +1,11 @@
+<div class="modal" id="Modal">
+    <div class="modal-div">
+        <a class="title"> Editar cliente </a>
+        <form>
+            {{ form_customer.as_p }}
+            <input type="button" class="modal-btn" value="Salvar" onclick="setEditCustomer({{ id }})">
+            <input type="button" class="modal-btn" value="Apagar" onclick="deleteCustomer({{ id }})">
+        </form>
+
+    </div>
+</div>
