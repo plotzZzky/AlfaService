@@ -25,14 +25,17 @@ def get_form(request):
 
 @login_required()
 @csrf_exempt
-def create_request(request,):
+def create_request(request):
     form = RequestForm(request.POST)
     x = True
     # Form choice is return invalid, need correction
     if x:
-        customer_id = request.POST['choice']
-        customer = Customer.objects.get(pk=customer_id)  # type: ignore
-        status = get_status(request.POST['status'])
+        try:
+            customer_id = request.POST['choice']
+            customer = Customer.objects.get(pk=customer_id)  # type: ignore
+            status = get_status(request.POST['status'])
+        except KeyError:
+            return HttpResponse('Formulario incorreto', status=500)
 
         new_request = Request(
             customer=customer,
@@ -49,7 +52,10 @@ def create_request(request,):
 @login_required()
 @csrf_exempt
 def delete_request(request, id):
-    query = Request.objects.get(pk=id)  # type:ignore
+    try:
+        query = Request.objects.get(pk=id)  # type:ignore
+    except Request.DoesNotExist:  # type:ignore
+        return HttpResponse("Chamado não encontrado", status=500)
     if query:
         query.delete()
         return HttpResponse("Chamado deletado", status=200)
@@ -62,15 +68,17 @@ def edit_request(request, id):
     query = Request.objects.get(pk=id)  # type: ignore
     if request.method == 'POST':
         post = request.POST
-        status = post['status']
-        customer_id = request.POST['choice']
-
-        query.title = post['title']
-        query.order = post['order']
-        query.status = get_status(status)
-        query.customer = Customer.objects.get(pk=customer_id)  # type: ignore
-        query.save()
-        return HttpResponse('Chamado editado!', status=200)
+        try:
+            status = post['status']
+            customer_id = request.POST['choice']
+            query.title = post['title']
+            query.order = post['order']
+            query.status = get_status(status)
+            query.customer = Customer.objects.get(pk=customer_id)  # type: ignore
+            query.save()
+            return HttpResponse('Chamado editado!', status=200)
+        except KeyError:
+            return HttpResponse('Formulario incorreto!', status=500)
     else:
         form = RequestForm(instance=query)
         data = {'form_request': form, 'id': query.id}

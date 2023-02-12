@@ -3,7 +3,6 @@
 *.json
 *.kdbx
 *.sqlite3
-tests.py
 
 #ignore folders
 ./*

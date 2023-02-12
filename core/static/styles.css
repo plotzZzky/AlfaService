@@ -7,7 +7,7 @@
 
     --color_font: white;
     --color_text: black;
-    --font: Roboto;
+    --font: Roboto Slab;
     --shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     --th_color: #0087AB;
@@ -15,7 +15,7 @@
     --table_hover: #EDC5AB;
 
     /* size */
-    --menu_size: 70px;
+    --menu_size: 76px;
 }
 
 *{
@@ -118,7 +118,7 @@ html, body {
     display: none;
     flex-direction: column;
     position: absolute;
-    width: 90px;
+    width: calc(var(--menu_size) + 20px);
     margin-top: -2px;
     background-color: var(--color_pri);
 }

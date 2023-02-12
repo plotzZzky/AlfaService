@@ -52,13 +52,16 @@ class CustomUserCreationForm(UserCreationForm):
             raise ValidationError(" Email Already Exist")
         return email
 
-    def clean_password2(self):
-        password1 = self.cleaned_data['password1']
-        password2 = self.cleaned_data['password2']
+    def clean_password(self):
+        try:
+            password1 = self.cleaned_data['password1']
+            password2 = self.cleaned_data['password2']
 
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Password don't match")
-        return password2
+            if password1 and password2 and password1 != password2:
+                raise ValidationError("Password don't match")
+            return password2
+        except KeyError:
+            return ValidationError("both fields need to be filled")
 
     def save(self, commit=True):
         user = User.objects.create_user(
@@ -112,17 +115,13 @@ class EditUserForm(forms.ModelForm):
             raise ValidationError('Email ja usado por outra conta')
 
     def password_clean(self, data):
-        pwd1 = data['password1']
-        pwd2 = data['password2']
-        if pwd1 == pwd2 and len(pwd1) >= 8 or pwd1 == '':
-            return pwd1
-        else:
-            raise ValidationError('As senhas precisam ser iguais')
+        try:
+            pwd1 = data['password1']
+            pwd2 = data['password2']
+            if pwd1 == pwd2 and len(pwd1) >= 8 or pwd1 == '':
+                return pwd1
+            else:
+                raise ValidationError('As senhas precisam ser iguais')
+        except KeyError:
+            return False
 
-    def is_valid(self, user, data):
-        if self.username_clean(data, user):
-            return True
-        if self.email_clean(data, user):
-            return True
-        if self.password_clean(data):
-            return True

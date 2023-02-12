@@ -49,7 +49,7 @@ def logout_user(request):
 def edit_user(request):
     if request.method == 'POST':
         form = EditUserForm(user=request.user, data=request.POST)
-        if form.is_valid(user=request.user, data=request.POST):
+        if form.is_valid():
             user = User.objects.get(pk=request.user.id)
             user.username = request.POST['username']
             user.email = request.POST['email']

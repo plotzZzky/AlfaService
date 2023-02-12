@@ -7,8 +7,7 @@ from requests.models import Request
 
 @login_required()
 def home(request):
-    data = {}
-    return render(request, 'app.html', data)
+    return render(request, 'app.html')
 
 
 def about(request):

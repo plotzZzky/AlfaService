@@ -33,6 +33,7 @@ class RequestForm(forms.ModelForm):
     customer = forms.ChoiceField(label="", choices=Choices,
                                  widget=forms.Select(attrs={'id': 'Choice', 'class': 'select'}))
     status = forms.ChoiceField(label="", choices=Status, widget=forms.Select(attrs={'id': 'Status', 'class': 'select'}))
-    title = forms.CharField(label="", widget=forms.TextInput(
+    title = forms.CharField(label="", min_length=10, widget=forms.TextInput(
         attrs={'placeholder': 'Titulo do pedido', 'id': 'Title', 'class': 'inputForm'}))
-    order = forms.CharField(label="", widget=forms.Textarea(attrs={'placeholder': 'Pedido do cliente', 'id': 'Order'}))
+    order = forms.CharField(label="", min_length=20, widget=forms.Textarea(
+        attrs={'placeholder': 'Pedido do cliente', 'id': 'Order'}))
