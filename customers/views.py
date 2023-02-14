@@ -63,12 +63,12 @@ def delete_customer(request, id):
 @login_required()
 @csrf_exempt
 def edit_customer(request, id):
-    query = Customer.objects.get(pk=id)  # type: ignore
-    if request.method == 'POST':
-        form = CustomerForm(request.POST)
-        if form.is_valid():
-            post = request.POST
-            try:
+    try:
+        query = Customer.objects.get(pk=id)  # type: ignore
+        if request.method == 'POST':
+            form = CustomerForm(request.POST)
+            if form.is_valid():
+                post = request.POST
                 query.cpf = post['cpf']
                 query.name = post['name']
                 query.lastname = post['lastname']
@@ -77,11 +77,11 @@ def edit_customer(request, id):
                 query.telephone = post['telephone']
                 query.email = post['email']
                 query.save()
-                return HttpResponse('Cliente editado!', status=200)
-            except KeyError:
-                return HttpResponse('Formulario invalido!', status=500)
-        return HttpResponse('Formulario invalido!', status=500)
-    else:
-        form = CustomerForm(instance=query)
-        data = {'form_customer': form, 'id': query.id}
-        return render(request, "edit_customer.html", data)
+                return HttpResponse('Cliente editado!', status=202)
+            return HttpResponse('Formulario invalido!', status=500)
+        else:
+            form = CustomerForm(instance=query)
+            data = {'form_customer': form, 'id': query.id}
+            return render(request, "edit_customer.html", data)
+    except KeyError:
+        return HttpResponse("Id error", status=404)

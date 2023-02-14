@@ -44,7 +44,7 @@ def create_request(request):
             status=status
         )
         new_request.save()
-        return HttpResponse('Chamado criado!', status=200)
+        return HttpResponse('Chamado criado!', status=201)
     else:
         return HttpResponse('Formulario incorreto', status=500)
 
@@ -87,4 +87,9 @@ def edit_request(request, id):
 
 def get_status(value):
     options = ['Em aberto', 'Concluido', 'Em aguardo', 'Em aberto']
-    return options[int(value)]
+    try:
+        result = options[int(value)]
+    except IndexError:
+        result = options[0]
+    return result
+

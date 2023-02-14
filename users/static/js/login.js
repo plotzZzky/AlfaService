@@ -7,10 +7,16 @@ function set_tabs_inactive() {
     }
 }
 
-
-function showTab(tab) {
+function showLogin(tab) {
     set_tabs_inactive();
-    $('#Login').toggle();
-    $('#Signup').toggle();
+    $('#Login').show();
+    $('#Signup').hide();
+    tab.id = "tab-active";
+}
+
+function showSignUp(tab) {
+    set_tabs_inactive();
+    $('#Login').hide();
+    $('#Signup').show();
     tab.id = "tab-active";
 }

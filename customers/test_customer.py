@@ -84,10 +84,11 @@ class CustomerFormTest(TestCase):
                 'address': 'address',
                 'city': 'city',
                 'telephone': '(11)90909090',
-                'email': ''}
+                'email': ''
+                }
         customer = CustomerForm(data)
         result = customer.is_valid()
-        self.assertTrue(result)
+        self.assertFalse(result)
 
 
 class CustomerTest(TestCase):

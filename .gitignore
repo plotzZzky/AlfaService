@@ -8,5 +8,4 @@
 ./*
 .idea/*
 __pycache__/*
-.test
 */migrations/
