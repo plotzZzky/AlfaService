@@ -1,19 +1,29 @@
 from django import forms
+from django.db.utils import ProgrammingError
 
 from .models import Request
 from customers.models import Customer
 
 
-def get_customers():
-    query = Customer.objects.all()  # type:ignore
-    options = [
-        (0, 'Seleciona uma opção'),
+options = [
+    (0, 'Seleciona uma opção'),
+]
 
-    ]
-    for item in query:
-        item = (item.id, item.cpf)
-        options.append(item)
-    return options
+
+def get_customers():
+    try:
+        query = Customer.objects.all()  # type:ignore
+        if query >= 1:
+            for item in query:
+                item = (item.id, item.cpf)
+                options.append(item)
+            return options
+        else:
+            pass
+    except TypeError:
+        return options
+    except ProgrammingError:
+        return options
 
 
 Choices = get_customers()
